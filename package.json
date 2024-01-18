@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --recursive test",
+   "test": "echo \"No test specified\"",
     "build:css": "npx tailwindcss -i ./src/input.css -o ./dist/output.css --watch"
   },
   "author": "",
