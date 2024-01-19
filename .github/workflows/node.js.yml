@@ -28,7 +28,7 @@ jobs:
         with:
           host: "ec2-16-171-25-151.eu-north-1.compute.amazonaws.com"
           username: "ec2-user"
-          key: ${{ secrets.EC2_SSH_KEY}
+          key: ${{ secrets.EC2_SSH_KEY}}
           script: |
             sudo apt-get -y update
             sudo apt-get install -y apache2
