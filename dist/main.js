@@ -1,10 +1,9 @@
 var apikey = '113db2a1990e94ec2a19f906191136fb';
-var picskey = 'nnODgKzonIwDxjRNoZGNFXBA1h2fmE0y5NGQgPVQinVBY1uhny3TMKz5';
+var logo = 0;
 document.body.addEventListener('keydown', (event) => {
     if (event.key === 'Enter'){
         var searchString = document.getElementById('searchString').value;
         getWeather(searchString);
-        document.getElementById('searchString').value = '';
     }
 })
 function getWeather(searchString){
@@ -42,7 +41,7 @@ function displayWeather(description, icon, temp, feels_like, min, max, wind_spee
             const weatherIcon = document.getElementById('weatherIcon');
             city.innerText = cityName;
            temperature.innerHTML =` <span class="text-6xl">${Math.round(temp)}<span>°`;
-           ressenti.innerHTML = `ressenti:<span class="text-xl"> ${Math.round(feels_like)}<span>°`;
+           ressenti.innerHTML = `ressenti:<pre> </pre><span class="text-xl"> ${Math.round(feels_like)}<span>°`;
            desc.innerHTML = `<span class="text-2xl">${description}</span>`;
            minimum.innerHTML = `<span class="text-xl">${Math.round(min)}</span>° / <span class="text-xl">${Math.round(max)}</span>° `;
            wind.innerHTML = `<img src="./img/wind_speed.svg" class="w-16 h-32">  ${Math.round(wind_speed*1.85)} km/h`;
