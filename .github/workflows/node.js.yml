@@ -1,21 +1,39 @@
 name: Push-to-EC2
 
-on: push
+# Trigger deployment only on push to main branch
+on:
+  push:
+    branches:
+      - main
 
 jobs:
   deploy:
-    name: Push to EC2 Instance
+    name: Deploy to EC2 on master branch push
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout the code
-        uses: actions/checkout@v1
+      - name: Checkout the files
+        uses: actions/checkout@v2
 
-      - name: Deploy to my EC2 instance
-        uses: easingthemes/ssh-deploy@v2.1.5
+      - name: Deploy to Server 1
+        uses: easingthemes/ssh-deploy@main
         env:
           SSH_PRIVATE_KEY: ${{ secrets.ec2_ssh_key}}
-          SOURCE: "./"
           REMOTE_HOST: "ec2-16-171-25-151.eu-north-1.compute.amazonaws.com"
           REMOTE_USER: "ec2-user"
           TARGET: "home"
+
+      - name: Executing remote ssh commands using ssh key
+        uses: appleboy/ssh-action@master
+        with:
+          host: "ec2-16-171-25-151.eu-north-1.compute.amazonaws.com"
+          username: "ec2-user"
+          key: ${{ secrets.ec2_ssh_key}}
+          script: |
+            sudo apt-get -y update
+            sudo apt-get install -y apache2
+            sudo systemctl start apache2
+            sudo systemctl enable apache2
+            cd home
+            sudo mv * /var/www/
+
