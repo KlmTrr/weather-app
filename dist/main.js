@@ -86,7 +86,7 @@ function showClothes(array){
     habits.style.opacity = 0.9;
 
   for(i = 0; i< array.length; i++){
-    habits.innerHTML += `<div id='tenue${i}' class="tenue flex h-1/3 md:h-auto items-center wrap w-fit "><span class="tenueTitle absolute md:relative opacity-0 md:opacity-100"> Tenue ${i+1}</span></div>`
+    habits.innerHTML += `<div id='tenue${i}' class="tenue flex flex-1 h-1/3 lg:h-auto items-center wrap w-fit my-1 lg:mb-0"><span class="tenueTitle absolute lg:relative opacity-0 md:opacity-100"> Tenue ${i+1}</span></div>`
     array[i].forEach(clothe =>{
         if(clothe != "/"){
             document.getElementById(`tenue${i}`).innerHTML += `<img src="./img/${clothe}.png" class="clotheIcon w-14 md:w-20 mx-1"/>`
